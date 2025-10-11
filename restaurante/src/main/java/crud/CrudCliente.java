@@ -5,14 +5,12 @@ import utilitarios.Video;
 import modelos.Cliente;
 
 public class CrudCliente {
-
     private ArrayList<Cliente> clientes;
 
     public CrudCliente() {
         clientes = new ArrayList<>();
     }
 
-    // CREATE
     public void adicionarCliente() {
         Video.limparTela();
         Video.separador();
@@ -26,10 +24,96 @@ public class CrudCliente {
         Cliente novoCliente = new Cliente(nome, idade, cpf, numeroTelefone);
         clientes.add(novoCliente);
 
-        Video.mensagemOk("Cliente adicionado com sucesso!");
+        Video.barraProgresso(20,70);
+        Video.mensagemOk("\nCliente adicionado com sucesso!");
         Video.rodape("Pressione ENTER para continuar");
         Video.pausa();
         Video.limparTela();
     }
 
+    public void listarClientes() {
+        Video.limparTela();
+        Video.separador();
+        System.out.println("Lista de Clientes");
+
+        if (clientes.isEmpty()) {
+            System.out.println("Nenhum cliente cadastrado.");
+        } else {
+            for (int i = 0; i < clientes.size(); i++) {
+                Cliente cliente = clientes.get(i);
+                System.out.println((i + 1) + ". " + cliente);
+            }
+        }
+
+        Video.rodape("Pressione ENTER para continuar");
+        Video.pausa();
+        Video.limparTela();
+    }
+
+    public void atualizarCliente() {
+        Video.limparTela();
+        Video.separador();
+        System.out.println("Atualizar Cliente");
+
+        if (clientes.isEmpty()) {
+            System.out.println("Nenhum cliente cadastrado.");
+            Video.rodape("Pressione ENTER para continuar");
+            Video.pausa();
+            Video.limparTela();
+            return;
+        }
+
+        listarClientes();
+        int indice = Teclado.readInt("Digite o número do cliente que deseja atualizar: ") - 1;
+
+        if (indice < 0 || indice >= clientes.size()) {
+            Video.mensagemErro("Cliente inválido.");
+        } else {
+            Cliente cliente = clientes.get(indice);
+
+            String nome = Teclado.readString("Digite o novo nome (" + cliente.getNome() + "): ");
+            int idade = Teclado.readInt("Digite a nova idade (" + cliente.getIdade() + "): ");
+            String cpf = Teclado.readString("Digite o novo CPF (" + cliente.getCpf() + "): ");
+            String numeroTelefone = Teclado.readString("Digite o novo número de telefone (" + cliente.getNumeroTelefone() + "): ");
+
+            if (!nome.isEmpty()) cliente.setNome(nome);
+            if (idade > 0) cliente.setIdade(idade);
+            if (!cpf.isEmpty()) cliente.setCpf(cpf);
+            if (!numeroTelefone.isEmpty()) cliente.setNumeroTelefone(numeroTelefone);
+
+            Video.mensagemOk("Cliente atualizado com sucesso!");
+        }
+
+        Video.rodape("Pressione ENTER para continuar");
+        Video.pausa();
+        Video.limparTela();
+    }
+
+    public void deletarCliente() {
+        Video.limparTela();
+        Video.separador();
+        System.out.println("Deletar Cliente");
+
+        if (clientes.isEmpty()) {
+            System.out.println("Nenhum cliente cadastrado.");
+            Video.rodape("Pressione ENTER para continuar");
+            Video.pausa();
+            Video.limparTela();
+            return;
+        }
+
+        listarClientes();
+        int indice = Teclado.readInt("Digite o número do cliente que deseja deletar: ") - 1;
+
+        if (indice < 0 || indice >= clientes.size()) {
+            Video.mensagemErro("Cliente inválido.");
+        } else {
+            clientes.remove(indice);
+            Video.mensagemOk("Cliente deletado com sucesso!");
+        }
+
+        Video.rodape("Pressione ENTER para continuar");
+        Video.pausa();
+        Video.limparTela();
+    }
 }

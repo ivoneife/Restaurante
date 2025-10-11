@@ -1,12 +1,7 @@
 package apresentacao.menu;
-
-
-
 import java.util.ArrayList;
-
 import utilitarios.Teclado;
 import utilitarios.Video;
-
 
 public class Menu {
     private String titulo;
@@ -42,9 +37,9 @@ public class Menu {
 
     public static int exibirExemplo() { //usar como static em uma classe de menus
         ArrayList<String> opcoes = new ArrayList<>();
-        opcoes.add("Cadastrar cliente 1");
-        opcoes.add("Cadastrar 2");
-        opcoes.add("Voltar");
+        opcoes.add("Cadastrar cliente/alterar dados");
+        opcoes.add("Menu restaurante");
+        opcoes.add("Sair");
         Menu menu = new Menu("Menu de Opcoes", opcoes);
         return menu.exibir();
     }

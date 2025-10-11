@@ -13,27 +13,78 @@ public class App {
     public static void main(String[] args) {
         
         int opcao;
+        int opçaoCrud;
+        String resposta;
        
-
         do {
             Video.cabecalho("Restaurante ...");
-
             System.out.println("Seja bem vindo ao nosso restaurante!");
             Video.separador();
 
+            resposta = Teclado.readString("Deseja se cadastrar no restaurante? (s/n): ").toLowerCase();
+            if (resposta.equals("s")) {
+
+                Video.mensagemOk("Que ótimo! Vamos começar o cadastro.");
+                CrudCliente crudCliente = new CrudCliente();
+                crudCliente.adicionarCliente();
+                Video.mensagemInfo("Agora você pode fazer seus pedidos.");
+                Video.pausa();
+            }
+            else if (resposta.equals("n")) {
+                Video.mensagemInfo("Tudo bem! Você pode fazer pedidos sem cadastro.");
+                Video.pausa();
+            }
+            else {
+                Video.mensagemAlerta("Resposta inválida. Por favor, responda com 's' ou 'n'.");
+                Video.pausa();
+            }
+
             CrudCliente crudCliente = new CrudCliente();
-            crudCliente.adicionarCliente();
-            
-            
+           
+            opcao = Menu.exibirExemplo();
+            do{
+                switch (opcao) {
+                    case 1:
+                        opçaoCrud = MenuPessoa.exibir();
+                        switch (opçaoCrud) {
+                            case 1: 
+                                crudCliente.adicionarCliente();
+                                break;
+                            case 2: 
+                                crudCliente.listarClientes();
+                                break;
+                            case 3:
+                                crudCliente.atualizarCliente();
+                                break;
+                            case 4:
+                                crudCliente.deletarCliente();
+                                break;
+                            case 5:
+                                break;
+                            default:
+                                break;
+                        }
+                    
+                    case 2:
+                        Cardapio cardapio = new Cardapio();
+                        cardapio.exibirCardapio();
+                        int escolha = Teclado.readInt("Digite o número do prato que deseja pedir (0 para sair): ");
+                        if (escolha == 0) {
+                            Video.mensagemInfo("Voltando ao menu principal...");
+                            Video.pausa();
+                            break;
+                        }
+                        cardapio.fazerPedido(escolha);
+                        Video.pausa();
+                        break;
+                    
+                    default:
+                        break;
+                }
+            }while(opcao != 3);
 
             // --- MENU ---
-            System.out.println("1 - Mostrar mensagem OK");
-            System.out.println("2 - Mostrar mensagem ERRO");
-            System.out.println("3 - Mostrar mensagem ALERTA");
-            System.out.println("4 - Mostrar mensagem INFO");
-            System.out.println("5 - Efeito de digitação");
-            System.out.println("6 - Barra de progresso");
-            System.out.println("0 - Sair");
+            
 
             Video.separador();
 
