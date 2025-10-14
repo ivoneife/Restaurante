@@ -19,8 +19,9 @@ public class Prato {
     public String getCategoria() { return categoria; }
     public void setCategoria(String categoria) { this.categoria = categoria; }
 
+   
     @Override   
     public String toString() {
-        return "Nome prato: " + getNome() + ", Preço: $" + getPreco() + ", Categoria: " + getCategoria();
+        return "Nome prato: " + getNome() + " - Preço: $" + getPreco() + " - Categoria: " + getCategoria();
     }
 }

@@ -26,28 +26,23 @@ public class CrudCliente {
 
         Video.barraProgresso(20,70);
         Video.mensagemOk("\nCliente adicionado com sucesso!");
-        Video.rodape("Pressione ENTER para continuar");
-        Video.pausa();
-        Video.limparTela();
+        Video.finalizarTela();
     }
 
     public void listarClientes() {
         Video.limparTela();
         Video.separador();
-        System.out.println("Lista de Clientes");
+        System.out.println("Lista de Clientes\n");
 
         if (clientes.isEmpty()) {
-            System.out.println("Nenhum cliente cadastrado.");
+            Video.mensagemAlerta("Nenhum cliente cadastrado.");
         } else {
             for (int i = 0; i < clientes.size(); i++) {
                 Cliente cliente = clientes.get(i);
                 System.out.println((i + 1) + ". " + cliente);
             }
         }
-
-        Video.rodape("Pressione ENTER para continuar");
-        Video.pausa();
-        Video.limparTela();
+        Video.finalizarTela();
     }
 
     public void atualizarCliente() {
@@ -57,9 +52,7 @@ public class CrudCliente {
 
         if (clientes.isEmpty()) {
             System.out.println("Nenhum cliente cadastrado.");
-            Video.rodape("Pressione ENTER para continuar");
-            Video.pausa();
-            Video.limparTela();
+            Video.finalizarTela();
             return;
         }
 
@@ -83,10 +76,7 @@ public class CrudCliente {
 
             Video.mensagemOk("Cliente atualizado com sucesso!");
         }
-
-        Video.rodape("Pressione ENTER para continuar");
-        Video.pausa();
-        Video.limparTela();
+        Video.finalizarTela();
     }
 
     public void deletarCliente() {
@@ -96,9 +86,7 @@ public class CrudCliente {
 
         if (clientes.isEmpty()) {
             System.out.println("Nenhum cliente cadastrado.");
-            Video.rodape("Pressione ENTER para continuar");
-            Video.pausa();
-            Video.limparTela();
+            Video.finalizarTela();
             return;
         }
 
@@ -111,9 +99,13 @@ public class CrudCliente {
             clientes.remove(indice);
             Video.mensagemOk("Cliente deletado com sucesso!");
         }
+        Video.finalizarTela();
+    }
 
-        Video.rodape("Pressione ENTER para continuar");
-        Video.pausa();
-        Video.limparTela();
+     public Cliente buscarClientePorIndice(int indice) {
+        if (indice >= 0 && indice < clientes.size()) {
+            return clientes.get(indice);
+        }
+        return null;
     }
 }

@@ -23,8 +23,4 @@ public class Cardapio{
             System.out.println(prato);
         }
     }
-
-
-
-
 }

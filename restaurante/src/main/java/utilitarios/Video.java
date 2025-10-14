@@ -119,4 +119,9 @@ public class Video {
         System.out.println(AZUL + "[INFO] " + msg + RESET);
     }
 
+    public static void finalizarTela() {
+        Video.pausa();
+        Video.limparTela();
+    }
+
 }
