@@ -42,7 +42,6 @@ public class CrudCliente {
                 System.out.println((i + 1) + ". " + cliente);
             }
         }
-        Video.finalizarTela();
     }
 
     public void atualizarCliente() {
@@ -57,7 +56,7 @@ public class CrudCliente {
         }
 
         listarClientes();
-        int indice = Teclado.readInt("Digite o número do cliente que deseja atualizar: ") - 1;
+        int indice = Teclado.readInt("Digite o número do indice cliente que deseja atualizar: ") - 1;
 
         if (indice < 0 || indice >= clientes.size()) {
             Video.mensagemErro("Cliente inválido.");
@@ -91,7 +90,7 @@ public class CrudCliente {
         }
 
         listarClientes();
-        int indice = Teclado.readInt("Digite o número do cliente que deseja deletar: ") - 1;
+        int indice = Teclado.readInt("Digite o número do indice cliente que deseja deletar: ") - 1;
 
         if (indice < 0 || indice >= clientes.size()) {
             Video.mensagemErro("Cliente inválido.");
@@ -102,10 +101,14 @@ public class CrudCliente {
         Video.finalizarTela();
     }
 
-     public Cliente buscarClientePorIndice(int indice) {
+    public Cliente buscarClientePorIndice(int indice) {
         if (indice >= 0 && indice < clientes.size()) {
             return clientes.get(indice);
         }
         return null;
+    }
+
+    public int getQuantidadeClientes() {
+        return clientes.size();
     }
 }

@@ -37,15 +37,21 @@ public class App {
                     
                     case 2:
                         MenuPedido.exibir(crudCliente);
-                    
                         break;
                     
                     default:
                         break;
+
                 }
             }while(opcao != 3);
+            
 
         } while (opcao != 3);
+
+        Video.mensagemOk("Obrigado por usar nosso sistema!");
+        Video.finalizarTela();
+
+        
 
         
     }
