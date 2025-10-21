@@ -7,11 +7,11 @@ public class Garcom extends Pessoa {
     public Garcom(String nome, int idade, String cpf, int codigo, double taxaServico) {
         super(nome, idade, cpf);
         setCodigo(codigo);
-        this.taxaServico = taxaServico;
+        setTaxaServico(taxaServico);
     }
 
     public double getTaxaServico() { return taxaServico; }
-    
+    public void setTaxaServico(double taxaServico) { this.taxaServico = taxaServico; }
     
     public int getCodigo() { return codigo; }
     public void setCodigo(int codigo) { this.codigo = codigo; }
@@ -20,5 +20,4 @@ public class Garcom extends Pessoa {
     public String toString() {
         return super.toString() + ", Código: " + getCodigo();
     }
-
 }

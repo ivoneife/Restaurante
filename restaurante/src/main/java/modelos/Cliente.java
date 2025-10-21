@@ -15,8 +15,4 @@ public class Cliente extends Pessoa {
     public String toString() {
         return super.toString() + ", numero telefone: " + getNumeroTelefone();
     }
-
-    
-
-
 }

@@ -14,25 +14,27 @@ public class CrudCliente {
     public void adicionarCliente() {
         Video.limparTela();
         Video.separador();
-        System.out.println("Cadastro de Cliente");
+        Video.cabecalho("Cadastro Cliente");
 
         String nome = Teclado.readString("Digite seu nome: ");
         int idade = Teclado.readInt("Digite sua idade: ");
         String cpf = Teclado.readString("Digite seu CPF: ");
-        String numeroTelefone = Teclado.readString("Digite seu número de telefone: ");
+        String numeroTelefone = Teclado.readString("Digite seu número de telefone:");
 
         Cliente novoCliente = new Cliente(nome, idade, cpf, numeroTelefone);
         clientes.add(novoCliente);
 
-        Video.barraProgresso(20,70);
-        Video.mensagemOk("\nCliente adicionado com sucesso!");
+        System.out.println();
+        Video.barraProgresso(20,80);
+        System.out.println();
+        Video.mensagemOk("Cliente adicionado com sucesso!");
         Video.finalizarTela();
     }
 
     public void listarClientes() {
         Video.limparTela();
         Video.separador();
-        System.out.println("Lista de Clientes\n");
+        Video.cabecalho("Lista de Clientes");
 
         if (clientes.isEmpty()) {
             Video.mensagemAlerta("Nenhum cliente cadastrado.");
@@ -42,12 +44,13 @@ public class CrudCliente {
                 System.out.println((i + 1) + ". " + cliente);
             }
         }
+        Video.pausa();
     }
 
     public void atualizarCliente() {
         Video.limparTela();
         Video.separador();
-        System.out.println("Atualizar Cliente");
+        Video.cabecalho("Atualizar Cliente");
 
         if (clientes.isEmpty()) {
             System.out.println("Nenhum cliente cadastrado.");
@@ -56,12 +59,12 @@ public class CrudCliente {
         }
 
         listarClientes();
-        int indice = Teclado.readInt("Digite o número do indice cliente que deseja atualizar: ") - 1;
-
-        if (indice < 0 || indice >= clientes.size()) {
+        String cpfBusca = Teclado.readString("Digite o número do cpf cliente que deseja atualizar: ");
+        
+        if (buscarClientePorCpf(cpfBusca)==null) {
             Video.mensagemErro("Cliente inválido.");
         } else {
-            Cliente cliente = clientes.get(indice);
+            Cliente cliente = clientes.get(clientes.indexOf(buscarClientePorCpf(cpfBusca)));
 
             String nome = Teclado.readString("Digite o novo nome (" + cliente.getNome() + "): ");
             int idade = Teclado.readInt("Digite a nova idade (" + cliente.getIdade() + "): ");
@@ -81,7 +84,7 @@ public class CrudCliente {
     public void deletarCliente() {
         Video.limparTela();
         Video.separador();
-        System.out.println("Deletar Cliente");
+        Video.cabecalho("Deletar Cliente");
 
         if (clientes.isEmpty()) {
             System.out.println("Nenhum cliente cadastrado.");
@@ -90,20 +93,22 @@ public class CrudCliente {
         }
 
         listarClientes();
-        int indice = Teclado.readInt("Digite o número do indice cliente que deseja deletar: ") - 1;
+        String cpf = Teclado.readString("Digite o número do cpf cliente que deseja deletar: ");
 
-        if (indice < 0 || indice >= clientes.size()) {
+        if (buscarClientePorCpf(cpf)==null) {
             Video.mensagemErro("Cliente inválido.");
         } else {
-            clientes.remove(indice);
+            clientes.remove(buscarClientePorCpf(cpf));
             Video.mensagemOk("Cliente deletado com sucesso!");
         }
-        Video.finalizarTela();
+        Video.pausa();
     }
 
-    public Cliente buscarClientePorIndice(int indice) {
-        if (indice >= 0 && indice < clientes.size()) {
-            return clientes.get(indice);
+    public Cliente buscarClientePorCpf(String cpf) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                return cliente;
+            }
         }
         return null;
     }

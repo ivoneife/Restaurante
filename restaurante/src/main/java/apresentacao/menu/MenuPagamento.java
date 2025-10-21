@@ -6,9 +6,6 @@ import modelos.Pedido;
 
 public class MenuPagamento {
 
-    private String resposta;
-
-    
     public static TipoPagamento exibir(Pedido pedido) {
 
         if(pedido.calcularPagamento() == 0) {
@@ -29,13 +26,14 @@ public class MenuPagamento {
         }
        
         Video.limparTela();
-        Video.mensagemInfo("Valor: $" + pedido.calcularPagamento());
+        Video.mensagemInfo("Valor total: $" + pedido.calcularPagamento());
         System.out.println("Selecione o método de pagamento\n:");
         System.out.println("1 - Dinheiro");
         System.out.println("2 - Cartão de Crédito");
         System.out.println("3 - Cartão de Débito");
         System.out.println("4 - Pix");
         int opcao = Teclado.readInt("\nEscolha uma opção: ");
+
         switch (opcao) {
             case 1:
                 Video.mensagemOk("Pedido finalizado. Total a pagar: R$ " +  pedido.calcularPagamento()+ " via Dinheiro.");
@@ -57,7 +55,5 @@ public class MenuPagamento {
                 System.out.println("Opção inválida. Tente novamente.");
                 return exibir(pedido);
         }
-        
     }
-
 }

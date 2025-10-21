@@ -24,8 +24,7 @@ public class Pedido implements iterface.Pagavel {
         pratos.add(prato);
     }
 
-    
-    public void setIncluiTaxaServico(boolean taxaServico) {
+    public void setIncluirTaxaServico(boolean taxaServico) {
         this.taxaServico = taxaServico;
     }
 
@@ -55,13 +54,7 @@ public class Pedido implements iterface.Pagavel {
         System.out.println("\nTotal do pedido: $" + total + " com taxa de serviço");
     }
 
-
     public ArrayList<Prato> getPratos() {
         return pratos;
     }
-
-   
-
-    
-
 }

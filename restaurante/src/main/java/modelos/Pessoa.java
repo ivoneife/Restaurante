@@ -15,8 +15,14 @@ public class Pessoa {
     public void setNome(String nome) {this.nome = nome;}
 
     public int getIdade() { return idade;}
-    public void setIdade(int idade) {this.idade = idade;}
-
+    public void setIdade(int idade) {
+        if (idade<0 && idade > 120) {
+            this.idade = 1;
+        } 
+        else {
+            this.idade = idade;
+        }
+    }
     public String getCpf() { return cpf;}
     public void setCpf(String cpf) { this.cpf = cpf; }
 

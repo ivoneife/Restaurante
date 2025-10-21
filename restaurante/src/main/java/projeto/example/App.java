@@ -1,16 +1,8 @@
 package projeto.example;
 import apresentacao.menu.Menu;
-import apresentacao.menu.MenuPessoa;
-import apresentacao.menu.MenuPrincipal;
-import modelos.Cardapio;
-import modelos.Garcom;
-import modelos.Pedido;
-import utilitarios.Teclado;
 import utilitarios.Video;
-import java.util.ArrayList;
 import crud.CrudCliente;
 import apresentacao.menu.Iniciar;
-import modelos.Cliente;
 import apresentacao.menu.MenuCliente;
 import apresentacao.menu.MenuPedido;
 
@@ -18,16 +10,16 @@ public class App {
     public static void main(String[] args) {
         
         int opcao;
-        int opçaoCrud;
-        String resposta;
         CrudCliente crudCliente = new CrudCliente();
        
         do {
             Video.cabecalho("Restaurante ...");
-            System.out.println("Seja bem vindo ao nosso restaurante!");
+            System.out.println("Seja muito bem-vindo ao Restaurante.. nome!\n" + //
+                                "Aqui, cada prato é preparado com carinho para tornar sua experiência inesquecível.\n" + 
+                                "\nBom apetite!");
             Video.separador();
+            Video.pausa();
 
-            resposta = Iniciar.iniciarCadastro(crudCliente);
             do{
                 opcao = Menu.exibirExemplo();
                 switch (opcao) {
@@ -41,18 +33,13 @@ public class App {
                     
                     default:
                         break;
-
+                        
                 }
             }while(opcao != 3);
-            
 
         } while (opcao != 3);
 
         Video.mensagemOk("Obrigado por usar nosso sistema!");
         Video.finalizarTela();
-
-        
-
-        
     }
 }

@@ -35,10 +35,10 @@ public class Menu {
         return opcaoEscolhida;
     }
 
-    public static int exibirExemplo() { //usar como static em uma classe de menus
+    public static int exibirExemplo() { 
         ArrayList<String> opcoes = new ArrayList<>();
-        opcoes.add("Cadastrar cliente/alterar dados");
-        opcoes.add("Menu restaurante");
+        opcoes.add("Menu cliente");
+        opcoes.add("Menu restaurante\n");
         opcoes.add("Sair");
         Menu menu = new Menu("Menu de Opcoes", opcoes);
         return menu.exibir();
