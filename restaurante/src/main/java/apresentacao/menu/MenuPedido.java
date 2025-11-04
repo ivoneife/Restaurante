@@ -1,11 +1,7 @@
 package apresentacao.menu;
 import crud.CrudCliente;
-import modelos.Cardapio;
-import modelos.Cliente;
-import modelos.Garcom;
-import modelos.Pedido;
-import utilitarios.Teclado;
-import utilitarios.Video;
+import modelos.*;
+import utilitarios.*;
 
 public class MenuPedido {
     public static void exibir( CrudCliente crudCliente) {
@@ -52,10 +48,11 @@ public class MenuPedido {
         Cardapio cardapio = new Cardapio();
         
         int opcaoPedido;
+
         do {
             Video.limparTela();
-            Video.cabecalho("Menu de Pedidos");
-            System.out.println("1 - Ver cardápio");
+            Video.cabecalho("Menu de pedidos");
+            System.out.println("1 - Ver cardapio");
             System.out.println("2 - Adicionar prato ao pedido");
             System.out.println("3 - Ver resumo do pedido");
             System.out.println("4 - Finalizar pedido");

@@ -1,7 +1,6 @@
 package apresentacao.menu;
 import java.util.ArrayList;
-import utilitarios.Teclado;
-import utilitarios.Video;
+import utilitarios.*;
 
 public class Menu {
     private String titulo;
@@ -43,21 +42,4 @@ public class Menu {
         Menu menu = new Menu("Menu de Opcoes", opcoes);
         return menu.exibir();
     }
-
-    /*Na App 
-     * 
-     * int opcaoPrincipal;
-
-            do {
-                opcaoPrincipal = MenuPrincipal.exibir();
-
-                switch (opcaoPrincipal) {
-                    case 1 -> {
-                     ...
-                    }
-                ...
-            ...
-     *  
-    */
-
 }

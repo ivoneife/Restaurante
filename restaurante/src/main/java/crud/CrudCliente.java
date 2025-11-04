@@ -1,7 +1,6 @@
 package crud;
 import java.util.ArrayList;
-import utilitarios.Teclado;
-import utilitarios.Video;
+import utilitarios.*;
 import modelos.Cliente;
 
 public class CrudCliente {
@@ -17,10 +16,28 @@ public class CrudCliente {
         Video.cabecalho("Cadastro Cliente");
 
         String nome = Teclado.readString("Digite seu nome: ");
-        int idade = Teclado.readInt("Digite sua idade: ");
+        int idade;
+        while (true) {
+            try {
+                idade = Teclado.readInt("Digite sua idade: ");
+                if (idade <= 0 || idade >= 100) {
+                    Video.mensagemErro("A idade deve ser maior que 0 e menor que 100. Tente novamente.");
+                    continue;
+                }
+                break;
+            } catch (NumberFormatException e) {
+                Video.mensagemErro("Entrada inválida! Digite apenas números.");
+            }
+        }
+        
         String cpf = Teclado.readString("Digite seu CPF: ");
+        if (buscarClientePorCpf(cpf) != null) {
+            Video.mensagemErro("CPF já cadastrado!");
+            Video.pausa();
+            return;
+        }
+        
         String numeroTelefone = Teclado.readString("Digite seu número de telefone:");
-
         Cliente novoCliente = new Cliente(nome, idade, cpf, numeroTelefone);
         clientes.add(novoCliente);
 
@@ -59,12 +76,12 @@ public class CrudCliente {
         }
 
         listarClientes();
-        String cpfBusca = Teclado.readString("Digite o número do cpf cliente que deseja atualizar: ");
+        String cpfCliente = Teclado.readString("Digite o número do cpf cliente que deseja atualizar: ");
         
-        if (buscarClientePorCpf(cpfBusca)==null) {
+        if (buscarClientePorCpf(cpfCliente)==null) {
             Video.mensagemErro("Cliente inválido.");
         } else {
-            Cliente cliente = clientes.get(clientes.indexOf(buscarClientePorCpf(cpfBusca)));
+            Cliente cliente = clientes.get(clientes.indexOf(buscarClientePorCpf(cpfCliente)));
 
             String nome = Teclado.readString("Digite o novo nome (" + cliente.getNome() + "): ");
             int idade = Teclado.readInt("Digite a nova idade (" + cliente.getIdade() + "): ");
@@ -93,12 +110,12 @@ public class CrudCliente {
         }
 
         listarClientes();
-        String cpf = Teclado.readString("Digite o número do cpf cliente que deseja deletar: ");
+        String cpfCliente = Teclado.readString("Digite o número do cpf cliente que deseja deletar: ");
 
-        if (buscarClientePorCpf(cpf)==null) {
+        if (buscarClientePorCpf(cpfCliente)==null) {
             Video.mensagemErro("Cliente inválido.");
         } else {
-            clientes.remove(buscarClientePorCpf(cpf));
+            clientes.remove(buscarClientePorCpf(cpfCliente));
             Video.mensagemOk("Cliente deletado com sucesso!");
         }
         Video.pausa();

@@ -1,7 +1,6 @@
 package apresentacao.menu;
 import serviços.TipoPagamento;
-import utilitarios.Video;
-import utilitarios.Teclado;
+import utilitarios.*;
 import modelos.Pedido;
 
 public class MenuPagamento {
@@ -9,50 +8,50 @@ public class MenuPagamento {
     public static TipoPagamento exibir(Pedido pedido) {
 
         if(pedido.calcularPagamento() == 0) {
-            Video.mensagemErro("O pedido não possui itens. Adicione pratos antes de finalizar o pagamento.");
+            Video.mensagemErro("O pedido nao possui itens. Adicione pratos antes de finalizar o pagamento.");
             return null;
         }
         
-        String resposta = Teclado.readString("ReDeseja incluir taxa de serviço? s/n: ");
+        String resposta = Teclado.readString("Deseja incluir taxa de serviço? s/n: ");
         if(Character.toLowerCase(resposta.charAt(0)) == 's') {
-            pedido.setIncluiTaxaServico(true);
-            Video.mensagemOk("Taxa de serviço será incluída no pedido.");
+            pedido.setIncluirTaxaServico(true);
+            Video.mensagemOk("Taxa de serviço sera incluida no pedido.");
             Video.pausa();
 
         } else {
-            pedido.setIncluiTaxaServico(false);
-            Video.mensagemOk("Taxa de serviço não será incluída no pedido.");
+            pedido.setIncluirTaxaServico(false);
+            Video.mensagemOk("Taxa de serviço nao sera incluida no pedido.");
             Video.pausa();
         }
        
         Video.limparTela();
         Video.mensagemInfo("Valor total: $" + pedido.calcularPagamento());
-        System.out.println("Selecione o método de pagamento\n:");
+        System.out.println("Selecione o metodo de pagamento:\n");
         System.out.println("1 - Dinheiro");
-        System.out.println("2 - Cartão de Crédito");
-        System.out.println("3 - Cartão de Débito");
+        System.out.println("2 - Cartao de Credito");
+        System.out.println("3 - Cartao de Debito");
         System.out.println("4 - Pix");
         int opcao = Teclado.readInt("\nEscolha uma opção: ");
 
         switch (opcao) {
             case 1:
-                Video.mensagemOk("Pedido finalizado. Total a pagar: R$ " +  pedido.calcularPagamento()+ " via Dinheiro.");
+                Video.mensagemOk("Pedido finalizado. Total pago: R$ " +  pedido.calcularPagamento()+ " via Dinheiro.");
                 return TipoPagamento.DINHEIRO;
             
             case 2:
-                Video.mensagemOk("Pedido finalizado. Total a pagar: R$ " +  pedido.calcularPagamento()+ " via Cartão de Credito.");
+                Video.mensagemOk("Pedido finalizado. Total pago: R$ " +  pedido.calcularPagamento()+ " via Cartao de Credito.");
                 return TipoPagamento.CARTAO_CREDITO;
 
             case 3:
-                Video.mensagemOk("Pedido finalizado. Total a pagar: R$ " +  pedido.calcularPagamento()+ " via Cartão de Debito.");
+                Video.mensagemOk("Pedido finalizado. Total pago: R$ " +  pedido.calcularPagamento()+ " via Cartao de Debito.");
                 return TipoPagamento.CARTAO_DEBITO;
             
             case 4:
-                Video.mensagemOk("Pedido finalizado. Total a pagar: R$ " +  pedido.calcularPagamento()+ " via Pix.");
+                Video.mensagemOk("Pedido finalizado. Total pago: R$ " +  pedido.calcularPagamento()+ " via Pix.");
                return TipoPagamento.PIX;
 
             default:
-                System.out.println("Opção inválida. Tente novamente.");
+                System.out.println("Opção invalida. Tente novamente.");
                 return exibir(pedido);
         }
     }

@@ -1,10 +1,7 @@
 package projeto.example;
-import apresentacao.menu.Menu;
 import utilitarios.Video;
 import crud.CrudCliente;
-import apresentacao.menu.Iniciar;
-import apresentacao.menu.MenuCliente;
-import apresentacao.menu.MenuPedido;
+import apresentacao.menu.*;
 
 public class App {
     public static void main(String[] args) {
@@ -39,7 +36,7 @@ public class App {
 
         } while (opcao != 3);
 
-        Video.mensagemOk("Obrigado por usar nosso sistema!");
+        Video.mensagemOk("Obrigado por utilizar nosso restaurante!");
         Video.finalizarTela();
     }
 }
